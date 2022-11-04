@@ -37,6 +37,17 @@ const Banner = () => {
           height: '448px',
           objectFit: 'contain',
           mt: '5rem',
+          //add fade to bottom of banner
+          '&:after': {
+            content: '""',
+            position: 'absolute',
+            top: '21rem',
+            left: 0,
+            width: '100%',
+            height: '20%',
+            background:
+              'linear-gradient(180deg, transparent, rgba(37, 37, 37, 0.61), #111)',
+          },
         }}
       >
         {' '}
@@ -51,7 +62,7 @@ const Banner = () => {
             My Favs
           </Button>
         </Box>
-        <Typography fontWeight={500} variant="h4">
+        <Typography fontWeight={500} variant="h6">
           {truncate(movie?.overview, 150)}
         </Typography>
       </Box>
