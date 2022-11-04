@@ -36,6 +36,7 @@ const Banner = () => {
           backgroundPosition: 'top center',
           height: '448px',
           objectFit: 'contain',
+          mt: '5rem',
         }}
       >
         {' '}

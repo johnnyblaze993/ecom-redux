@@ -23,12 +23,7 @@ const AppBar = () => {
   return (
     <div>
       {' '}
-      <BarApp
-        position="sticky"
-        sx={{
-          backgroundColor: show ? '#111' : 'transparent',
-        }}
-      >
+      <BarApp>
         <Paper
           sx={{
             display: 'flex',
@@ -37,10 +32,15 @@ const AppBar = () => {
             padding: '0 20px',
             height: '80px',
             zIndex: 100,
-            backgroundColor: show ? '#111' : 'transparent',
           }}
         >
-          <Tooltip title="Home" arrow>
+          <Tooltip
+            title="Home"
+            arrow
+            sx={{
+              position: 'sticky',
+            }}
+          >
             <Movie
               sx={{
                 fontSize: '40px',
