@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import Axios from '../Axios';
+import Axios from '../../Axios';
 import { motion } from 'framer-motion';
 
 const Row = ({ title, fetchUrl, isLargeRow }) => {

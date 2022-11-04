@@ -1,9 +1,9 @@
 import React from 'react';
-import AppBar from '../components/AppBar';
+import AppBar from '../../components/AppBar';
 import Banner from './Banner';
 import Row from './Row';
 
-import requests from '../Requests';
+import requests from '../../Requests';
 import { Stack } from '@mui/material';
 
 const HomeScreen = () => {

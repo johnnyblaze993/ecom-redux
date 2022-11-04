@@ -1,8 +1,8 @@
 import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
-import Axios from '../Axios';
+import Axios from '../../Axios';
 import { useEffect, useState } from 'react';
-import requests from '../Requests';
+import requests from '../../Requests';
 
 const Banner = () => {
   const [movie, setMovie] = useState([]);
@@ -42,7 +42,7 @@ const Banner = () => {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'left',
-          gap: '1rem',
+          gap: '2.5rem',
 
           //add fade to bottom of banner
           '&:after': {
@@ -58,7 +58,13 @@ const Banner = () => {
         }}
       >
         {' '}
-        <Typography fontWeight={700} variant="h1">
+        <Typography
+          fontWeight={700}
+          sx={{
+            fontSize: '4rem',
+          }}
+          variant="h1"
+        >
           {movie?.title || movie?.name || movie?.original_name}
         </Typography>
         <Box
