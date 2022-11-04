@@ -37,6 +37,13 @@ const Banner = () => {
           height: '448px',
           objectFit: 'contain',
           mt: '5rem',
+          padding: '1rem',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'left',
+          gap: '1rem',
+
           //add fade to bottom of banner
           '&:after': {
             content: '""',
@@ -54,7 +61,14 @@ const Banner = () => {
         <Typography fontWeight={700} variant="h1">
           {movie?.title || movie?.name || movie?.original_name}
         </Typography>
-        <Box>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '1rem',
+            mt: '1rem',
+            alignItems: 'center',
+          }}
+        >
           <Button variant="contained" color="primary">
             Play
           </Button>

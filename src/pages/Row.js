@@ -43,6 +43,12 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
               alt={movie.name}
               key={movie.id}
               style={{ width: '200px', height: '300px', objectFit: 'contain' }}
+              whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.3 },
+              }}
+              whileTap={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
             />
           ) : null
         )}
