@@ -1,20 +1,45 @@
 import { Button, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useState, useRef } from 'react';
+
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+
+import { useState } from 'react';
 import { auth } from '../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 const SigninScreen = () => {
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const register = (e) => {
+  const auth = getAuth();
+
+  const currentUser = auth.currentUser;
+  console.log(currentUser);
+
+  const register = async (e) => {
     e.preventDefault();
+
+    createUserWithEmailAndPassword(auth, email, password).then(
+      (userCredential) => {
+        // Signed in
+        const userlog = userCredential.user;
+        console.log(userlog);
+      }
+    );
   };
 
   const signIn = (e) => {
     e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log(user);
+    });
   };
 
   return (
@@ -24,6 +49,7 @@ const SigninScreen = () => {
       }}
     >
       <form
+        onSubmit={signIn}
         style={{
           width: '100%',
           display: 'flex',
@@ -46,26 +72,21 @@ const SigninScreen = () => {
         </Typography>
         <TextField
           variant="outlined"
+          onChange={(e) => setEmail(e.target.value)}
           margin="normal"
-          required
           fullWidth
           id="email"
           label="Email Address"
-          name="email"
-          autoComplete="email"
-          autoFocus
         />
         <TextField
           variant="outlined"
+          onChange={(e) => setPassword(e.target.value)}
           margin="normal"
-          required
           fullWidth
-          name="password"
-          label="Password"
-          type="password"
           id="password"
-          autoComplete="current-password"
+          label="Password"
         />
+
         <Button
           type="submit"
           fullWidth
@@ -75,6 +96,7 @@ const SigninScreen = () => {
         >
           Sign In
         </Button>
+
         <Typography
           sx={{
             fontSize: '15px',
@@ -107,7 +129,7 @@ const SigninScreen = () => {
             }}
             onClick={register}
           >
-            Lets get you started.{' '}
+            Lets get you started.
           </motion.span>
         </Typography>
       </form>

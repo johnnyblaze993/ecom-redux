@@ -3,10 +3,37 @@ import { Box, Button, Paper, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { useState } from 'react';
 import SigninScreen from './SigninScreen';
-// import { motion } from 'framer-motion';
+import { auth } from '../firebase';
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 const LoginScreen = () => {
   const [signIn, setSignIn] = useState(false);
+  const [email, setEmail] = useState('');
+
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+
+  //   const signInUser = (e) => {
+  //     e.preventDefault();
+  //     signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+  //       // Signed in
+  //       const user = userCredential.user;
+  //       console.log(user);
+  //     });
+  //     setSignIn(true);
+  //   };
+  const signOutUser = (e) => {
+    e.preventDefault();
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+    setSignIn(false);
+  };
+
   return (
     <div
       style={{
@@ -59,9 +86,13 @@ const LoginScreen = () => {
               fontSize: '60px',
             }}
           />
-          <Button variant="contained" onClick={() => setSignIn(true)}>
-            Login
-          </Button>
+          {currentUser ? (
+            <Button variant="contained">Sign In</Button>
+          ) : (
+            <Button variant="contained" onClick={signOutUser}>
+              Sign Out
+            </Button>
+          )}
         </Box>
         <>
           {signIn ? (
