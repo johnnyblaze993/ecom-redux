@@ -8,7 +8,7 @@ import {
 } from 'firebase/auth';
 
 import { useState } from 'react';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import { getAuth } from 'firebase/auth';
 
 const SigninScreen = () => {
@@ -17,13 +17,10 @@ const SigninScreen = () => {
 
   const auth = getAuth();
 
-  const currentUser = auth.currentUser;
-  console.log(currentUser);
-
   const register = async (e) => {
     e.preventDefault();
 
-    createUserWithEmailAndPassword(auth, email, password).then(
+    await createUserWithEmailAndPassword(auth, email, password).then(
       (userCredential) => {
         // Signed in
         const userlog = userCredential.user;
@@ -32,14 +29,16 @@ const SigninScreen = () => {
     );
   };
 
-  const signIn = (e) => {
+  const signIn = async (e) => {
     e.preventDefault();
 
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      console.log(user);
-    });
+    await signInWithEmailAndPassword(auth, email, password).then(
+      (userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+      }
+    );
   };
 
   return (
